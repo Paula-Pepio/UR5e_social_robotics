@@ -21,6 +21,7 @@ MOTIONS = {
     "init": "motions/init.yaml",
     "handshake": "motions/handshake.yaml",
     "give5": "motions/give5.yaml",
+    "B2_social_gesture": "motions/B2_social_gesture.yaml",
 }
 
 

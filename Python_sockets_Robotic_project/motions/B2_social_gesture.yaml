@@ -1,0 +1,90 @@
+sequence_name: B2_gesture
+
+steps:
+  - name: init
+    motion: moveJ
+    joints_deg: [-60, -65, -100, 170, -60, 0]
+    acceleration: 1.2
+    velocity: 0.10
+    time: 4.0
+    blend: 0.0
+
+  - name: xoc_mans_baix_mig
+    motion: moveL
+    target_xyz_mm: [40, -695, 300]
+    target_rpy_deg: [90, 10, 10]
+    acceleration: 1.2
+    velocity: 0.10
+    time: 3.0
+    blend: 0.0
+  
+  - name: xoc_mans_baix_esquerra
+    motion: moveL
+    target_xyz_mm: [-120, -635, 300]
+    target_rpy_deg: [80, -45, -45]
+    acceleration: 1.2
+    velocity: 0.10
+    time: 3.0
+    blend: 0.0
+
+  - name: xoc_mans_baix_dret
+    motion: moveL
+    target_xyz_mm: [95, -665, 300]
+    target_rpy_deg: [85, 30, 30]
+    acceleration: 1.2
+    velocity: 0.10
+    time: 3.0
+    blend: 0.0
+  
+  - name: xoc_mans_baix_mig
+    motion: moveL
+    target_xyz_mm: [40, -695, 300]
+    target_rpy_deg: [90, 10, 10]
+    acceleration: 1.2
+    velocity: 0.10
+    time: 3.0
+    blend: 0.0
+
+  - name: xoc_mans_adalt
+    motion: moveL
+    target_xyz_mm: [0, -700, 500]
+    target_rpy_deg: [90, 0, 00]
+    acceleration: 1.2
+    velocity: 0.10
+    time: 1.0
+    blend: 0.0
+
+  - name: degree_up
+    motion: moveL
+    target_xyz_mm: [5, -730, 570]
+    target_rpy_deg: [65, -5, 5]
+    acceleration: 1.2
+    velocity: 0.10
+    time: 1.0
+    blend: 0.0
+
+  - name: xoc_up
+    motion: moveL
+    target_xyz_mm: [-80, -705, 550]
+    target_rpy_deg: [65, -35, -15]
+    acceleration: 1.2
+    velocity: 0.10
+    time: 1.0
+    blend: 0.0
+
+  - name: degree_up
+    motion: moveL
+    target_xyz_mm: [5, -730, 570]
+    target_rpy_deg: [65, -5, 5]
+    acceleration: 1.2
+    velocity: 0.10
+    time: 1.0
+    blend: 0.0
+
+  - name: init
+    motion: moveJ
+    joints_deg: [-60, -65, -100, 170, -60, 0]
+    acceleration: 1.2
+    velocity: 0.10
+    time: 3.0
+    blend: 0.0
