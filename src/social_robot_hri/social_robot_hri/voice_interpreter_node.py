@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 
+import re
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
+
+from .speech_feedback import UNRECOGNISED_TOPIC
 
 
 class VoiceInterpreterNode(Node):
@@ -11,6 +15,10 @@ class VoiceInterpreterNode(Node):
         super().__init__('voice_interpreter_node')
 
         self.declare_parameter('activation_word', 'robot')
+        self.declare_parameter('speech_feedback', False)
+        self.feedback_publisher = None
+        if self.get_parameter('speech_feedback').value:
+            self.feedback_publisher = self.create_publisher(String, UNRECOGNISED_TOPIC, 10)
         self.declare_parameter('output_topic', '/social_behavior')
 
         self.subscription = self.create_subscription(
@@ -31,10 +39,17 @@ class VoiceInterpreterNode(Node):
     def voice_callback(self, msg: String):
         text = msg.data.lower().strip()
 
+        activation_word = self.get_parameter('activation_word').value.lower().strip()
+        if self.get_parameter('speech_feedback').value and activation_word:
+            if not text.startswith(activation_word):
+                return
+
         command = self.interpret_text(text)
 
         if command is None:
             self.get_logger().warn(f'Unknown voice command: {text}')
+            if self.feedback_publisher is not None:
+                self.feedback_publisher.publish(String())
             return
 
         out_msg = String()
@@ -62,7 +77,7 @@ class VoiceInterpreterNode(Node):
         if 'shake' in text or 'hand' in text:
             return 'handshake'
 
-        if 'five' in text or 'give me five' in text or 'give5' in text:
+        if text in ('g5', 'gift 5') or re.search(r'\bfive\b|\b(?:give(?:\s+me)?|high)\s*5\b', text):
             return 'give5'
 
         if 'stop' in text:

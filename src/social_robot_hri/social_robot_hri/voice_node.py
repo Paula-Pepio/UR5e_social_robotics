@@ -5,6 +5,8 @@ from rclpy.node import Node
 from std_msgs.msg import String
 import speech_recognition as sr
 
+from .speech_feedback import UNRECOGNISED_TOPIC
+
 
 class VoiceNode(Node):
 
@@ -17,12 +19,21 @@ class VoiceNode(Node):
             10
         )
 
+        self.declare_parameter('microphone_index', 6)
         self.declare_parameter('language', 'en-US')
+        self.declare_parameter('speech_feedback', False)
+        self.feedback_publisher = None
+        if self.get_parameter('speech_feedback').value:
+            self.feedback_publisher = self.create_publisher(String, UNRECOGNISED_TOPIC, 10)
         self.declare_parameter('timeout', 5.0)
         self.declare_parameter('phrase_time_limit', 4.0)
 
         self.recognizer = sr.Recognizer()
-        self.microphone = sr.Microphone()
+        microphone_index = self.get_parameter('microphone_index').value
+        self.microphone = sr.Microphone(
+            device_index=None if microphone_index == -1 else microphone_index
+        )
+        self.get_logger().info(f'Microphone index: {microphone_index}')
         with self.microphone as source:
             self.get_logger().info('Calibrating microphone...')
             self.recognizer.adjust_for_ambient_noise(source, duration=0.5)
@@ -51,6 +62,8 @@ class VoiceNode(Node):
             return
         except sr.UnknownValueError:
             self.get_logger().warn('Speech not understood.')
+            if self.feedback_publisher is not None:
+                self.feedback_publisher.publish(String())
             return
         except sr.RequestError as error:
             self.get_logger().error(f'Speech-recognition service error: {error}')

@@ -40,6 +40,8 @@ class BehaviorManagerClientNode(Node):
         # Subscriber
         # ---------------------------------------------------------
 
+        self.result_publisher = self.create_publisher(String, '/social_behavior/result', 10)
+
         self.subscription = self.create_subscription(
             String,
             "/social_behavior",
@@ -72,7 +74,7 @@ class BehaviorManagerClientNode(Node):
             self.get_logger().error(
                 f"Invalid behavior name: {behavior_name}"
             )
-
+            self.publish_result(behavior_name)
             return
 
         if not self.sequence_client.service_is_ready():
@@ -80,7 +82,7 @@ class BehaviorManagerClientNode(Node):
             self.get_logger().error(
                 f"Service not available: {self.service_name}"
             )
-
+            self.publish_result(behavior_name)
             return
 
         request = RunSequence.Request()
@@ -93,14 +95,16 @@ class BehaviorManagerClientNode(Node):
         future = self.sequence_client.call_async(request)
 
         future.add_done_callback(
-            self.sequence_response_callback
+            lambda completed: self.sequence_response_callback(completed, behavior_name)
         )
 
     # =============================================================
     # Service response callback
     # =============================================================
 
-    def sequence_response_callback(self, future):
+    def sequence_response_callback(self, future, behavior_name):
+
+        self.publish_result(behavior_name)
 
         try:
 
@@ -125,6 +129,10 @@ class BehaviorManagerClientNode(Node):
             self.get_logger().error(
                 f"Sequence rejected: {response.message}"
             )
+
+
+    def publish_result(self, behavior_name):
+        self.result_publisher.publish(String(data=behavior_name))
 
 
 def main(args=None):
