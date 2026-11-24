@@ -156,3 +156,57 @@ Update the Director's group GitHub repository with:
 
 - `UR5e_social_robotics\src\social_robot_behaviors\motions\custom_motion.yaml`;
 - Inserted video of simulated motion.
+
+---
+## Apunts 24/11
+
+Construct, open the prior Rosject or create a new one (ROS, Humble, Empty simulation)
+
+updates repository of diff packages; upgrade the needed packages just, we just need one of them (ros-humble-ur)
+
+simple movement with different points, but have to be feasible. complicate movement may have a not feasible point
+
+folder Python_sockets_Robotic_project
+first package: social_robot_behaviors
+motions folder => activity; copy and paste example, change name, and change only the intermediate targets, nOT THE INITIAL AND FINAL (home_start and home_end), all points start and stop in the same point
+
+specify position and orientation, and the program will find the POSE. to bring the robot at this specific 
+seed => specific joint values to give this numerical 
+
+keep the same initial joint values. 
+want to go from this position to this other position, and from this orientation to another in a straight line.
+increase / decrease these values.
+
+launch another node: MoveIt2
+planning trajectories.
+more complete / performing than roboDK
+
+open and paste it in a new terminal.
+1 terminal busy for the driver and another busy for the moveIt
+
+appears robot in vertical position; RViz position planing, move the tool to a specific position
+once RViz is open, 
+robot arm controlled, specific controlled
+client PCs: only sends to the teacher PC instructions
+we are publishing a message in a topic (wifi communication has some delays, not robust; cannot send a feedback in a close configuration)
+server and client PC will be the ??? in same environment
+
+the server will send a service able to eprform a social motion
+
+we open a new terminal
+nsq client
+topic is motion
+open a new terminal => publish ros topic pub
+robot moves
+
+we publish a message in a topic; and when i receive the message in a topic, i execute the movement in a service
+
+able to perform / read desired target position and planify a trajectory
+maybe straight line is not optimal; selects the shortest path from initial to final point, and executes all the movements
+
+yaml file with a specific movement and try it in the server, ...
+have it before next lab session
+hand shake movement, give 5???, and our movement
+planificar a yaml file amb un moviment simple
+ROS2 = 90% exacte al hardware; mes robust
+si funciona al software MoveIt funcionara en el real
