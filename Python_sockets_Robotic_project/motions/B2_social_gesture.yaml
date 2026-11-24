@@ -11,7 +11,7 @@ steps:
 
   - name: xoc_mans_baix_mig
     motion: moveL
-    target_xyz_mm: [40, -695, 300]
+    target_xyz_mm: [40, -350, 300]
     target_rpy_deg: [90, 10, 10]
     acceleration: 1.2
     velocity: 0.10
@@ -20,8 +20,8 @@ steps:
   
   - name: xoc_mans_baix_esquerra
     motion: moveL
-    target_xyz_mm: [-120, -635, 300]
-    target_rpy_deg: [80, -45, -45]
+    target_xyz_mm: [-120, -350, 300]
+    target_rpy_deg: [80, -15, -15]
     acceleration: 1.2
     velocity: 0.10
     time: 3.0
@@ -29,8 +29,8 @@ steps:
 
   - name: xoc_mans_baix_dret
     motion: moveL
-    target_xyz_mm: [95, -665, 300]
-    target_rpy_deg: [85, 30, 30]
+    target_xyz_mm: [95, -350, 300]
+    target_rpy_deg: [85, 15, 15]
     acceleration: 1.2
     velocity: 0.10
     time: 3.0
@@ -38,7 +38,7 @@ steps:
   
   - name: xoc_mans_baix_mig
     motion: moveL
-    target_xyz_mm: [40, -695, 300]
+    target_xyz_mm: [40, -350, 300]
     target_rpy_deg: [90, 10, 10]
     acceleration: 1.2
     velocity: 0.10
@@ -47,7 +47,7 @@ steps:
 
   - name: xoc_mans_adalt
     motion: moveL
-    target_xyz_mm: [0, -700, 500]
+    target_xyz_mm: [0, -350, 500]
     target_rpy_deg: [90, 0, 00]
     acceleration: 1.2
     velocity: 0.10
@@ -56,7 +56,7 @@ steps:
 
   - name: degree_up
     motion: moveL
-    target_xyz_mm: [5, -730, 570]
+    target_xyz_mm: [5, -350, 570]
     target_rpy_deg: [65, -5, 5]
     acceleration: 1.2
     velocity: 0.10
@@ -65,7 +65,7 @@ steps:
 
   - name: xoc_up
     motion: moveL
-    target_xyz_mm: [-80, -705, 550]
+    target_xyz_mm: [-80, -350, 550]
     target_rpy_deg: [65, -35, -15]
     acceleration: 1.2
     velocity: 0.10
@@ -74,7 +74,7 @@ steps:
 
   - name: degree_up
     motion: moveL
-    target_xyz_mm: [5, -730, 570]
+    target_xyz_mm: [5, -350, 570]
     target_rpy_deg: [65, -5, 5]
     acceleration: 1.2
     velocity: 0.10
