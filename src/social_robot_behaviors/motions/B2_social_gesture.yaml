@@ -1,0 +1,83 @@
+common:
+  execute: true
+  group_name: ur_manipulator
+  ik_link: tool0
+  target_frame: table
+  planning_frame: base_link
+  max_velocity: 0.1
+  max_acceleration: 0.1
+  ik_timeout_sec: 1.0
+  print_joints: true
+
+steps:
+  - name: home_start
+    target_xyz: [0, -400, 500]
+    target_rpy: [90.0, 0.0, 0.0]
+    seed_from_joint_states: false
+    seed_joints: [-60, -60, -100, 170, -60, 0]
+    duration: 4.0
+    sleep_after: 1.0
+
+  - name: xoc_mans_baix_mig
+    target_xyz: [40, -350, 300]
+    target_rpy: [90.0, 10.0, 10.0]
+    seed_from_joint_states: true
+    duration: 4.0
+    sleep_after: 1.0
+
+  - name: xoc_mans_baix_esquerra
+    target_xyz: [-120, -350, 300]
+    target_rpy: [80.0, -15.0, -15.0]
+    seed_from_joint_states: true
+    duration: 2.0
+    sleep_after: 1.0
+
+  - name: xoc_mans_baix_dret
+    target_xyz: [95, -350, 300]
+    target_rpy: [85.0, 15.0, 15.0]
+    seed_from_joint_states: true
+    duration: 2.0
+    sleep_after: 1.0
+
+  - name: xoc_mans_baix_mig
+    target_xyz: [40, -350, 300]
+    target_rpy: [90.0, 10.0, 10.0]
+    seed_from_joint_states: true
+    duration: 2.0
+    sleep_after: 1.0
+  
+  - name: xoc_mans_adalt
+    target_xyz: [0, -350, 500]
+    target_rpy: [90.0, 0.0, 0.0]
+    seed_from_joint_states: true
+    duration: 2.0
+    sleep_after: 1.0
+  
+  - name: degree_up
+    target_xyz: [5, -350, 570]
+    target_rpy: [65.0, -5.0, 5.0]
+    seed_from_joint_states: true
+    duration: 2.0
+    sleep_after: 1.0
+  
+  - name: xoc_up
+    target_xyz: [-80, -350, 550]
+    target_rpy: [65.0, -35.0, -15.0]
+    seed_from_joint_states: true
+    duration: 2.0
+    sleep_after: 1.0
+  
+  - name: degree_up
+    target_xyz: [5, -350, 570]
+    target_rpy: [65.0, -5.0, 5.0]
+    seed_from_joint_states: true
+    duration: 2.0
+    sleep_after: 1.0
+
+  - name: home_end
+    target_xyz: [0, -400, 500]
+    target_rpy: [90.0, 0.0, 0.0]
+    seed_from_joint_states: false
+    seed_joints: [-60, -60, -100, 170, -60, 0]
+    duration: 4.0
+    sleep_after: 1.0

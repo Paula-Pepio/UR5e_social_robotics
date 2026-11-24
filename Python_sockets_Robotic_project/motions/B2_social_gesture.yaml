@@ -48,7 +48,7 @@ steps:
   - name: xoc_mans_adalt
     motion: moveL
     target_xyz_mm: [0, -350, 500]
-    target_rpy_deg: [90, 0, 00]
+    target_rpy_deg: [90, 0, 0]
     acceleration: 1.2
     velocity: 0.10
     time: 1.0
